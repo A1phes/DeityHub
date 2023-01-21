@@ -241,6 +241,8 @@ function Library:CreateWindow(Config, Parent)
 				Label.Parent = Section.Container
 				Label.Text = Name
 				Label.Size = UDim2.new(1,-10,0,Label.TextBounds.Y)
+				Label.RichText = true
+				Label.TextXAlignment = Enum.TextXAlignment.Left
 				function LabelInit:UpdateText(Text)
 					Label.Text = Text
 					Label.Size = UDim2.new(1,-10,0,Label.TextBounds.Y)
