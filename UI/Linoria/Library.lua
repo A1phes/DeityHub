@@ -2677,6 +2677,7 @@ function Library:CreateWindow(...)
     if type(...) == 'table' then
         Config = ...;
     else
+        ScreenGui.Name = Arguments[1]
         Config.Title = Arguments[1]
         Config.AutoShow = Arguments[2] or false;
     end
