@@ -15,6 +15,10 @@ ProtectGui(ScreenGui);
 
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global;
 ScreenGui.Parent = CoreGui;
+if game.CoreGui:FindFirstChild("DeityHub-Linoria-UI") then
+    game.CoreGui:FindFirstChild("DeityHub-Linoria-UI"):Destroy()
+end
+ScreenGui.Name = "DeityHub-Linoria-UI"
 
 local Toggles = {};
 local Options = {};
@@ -2485,6 +2489,7 @@ do
     local WatermarkLabel = Library:CreateLabel({
         Position = UDim2.new(0, 5, 0, 0);
         Size = UDim2.new(1, -4, 1, 0);
+        RichText = true;
         TextSize = 14;
         TextXAlignment = Enum.TextXAlignment.Left;
         ZIndex = 203;
@@ -2677,7 +2682,6 @@ function Library:CreateWindow(...)
     if type(...) == 'table' then
         Config = ...;
     else
-        ScreenGui.Name = Arguments[1]
         Config.Title = Arguments[1]
         Config.AutoShow = Arguments[2] or false;
     end
