@@ -2802,7 +2802,7 @@ function Library:CreateWindow(...)
         WindowLabel.Text = Title;
     end;
 
-    function Window:AddTab(Name)
+    function Window:AddTab(Name,Scrolling)
         local Tab = {
             Groupboxes = {};
             Tabboxes = {};
@@ -2831,6 +2831,29 @@ function Library:CreateWindow(...)
             Parent = TabButton;
         });
 
+        if Scrolling then
+            FrameType = "ScrollingFrame"
+            FrameSetting = {
+                BackgroundTransparency = 1;
+                Position = UDim2.new(0, 0, 0, 0);
+                Size = UDim2.new(1, 0, 1, 0);
+                Visible = false;
+                ZIndex = 2;
+                Parent = TabContainer;
+                ScrollBarThickness = 1.5;
+            }
+        else
+            FrameType = "Frame"
+            FrameSetting = {
+                BackgroundTransparency = 1;
+                Position = UDim2.new(0, 0, 0, 0);
+                Size = UDim2.new(1, 0, 1, 0);
+                Visible = false;
+                ZIndex = 2;
+                Parent = TabContainer;
+            }
+        end
+
         local Blocker = Library:Create('Frame', {
             BackgroundColor3 = Library.MainColor;
             BorderSizePixel = 0;
@@ -2845,15 +2868,7 @@ function Library:CreateWindow(...)
             BackgroundColor3 = 'MainColor';
         });
 
-        local TabFrame = Library:Create('Frame', {
-            Name = 'TabFrame',
-            BackgroundTransparency = 1;
-            Position = UDim2.new(0, 0, 0, 0);
-            Size = UDim2.new(1, 0, 1, 0);
-            Visible = false;
-            ZIndex = 2;
-            Parent = TabContainer;
-        });
+        local TabFrame = Library:Create(FrameType, FrameSetting);
 
         local LeftSide = Library:Create('Frame', {
             BackgroundTransparency = 1;
