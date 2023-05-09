@@ -2840,6 +2840,7 @@ function Library:CreateWindow(...)
                 Visible = false;
                 ZIndex = 2;
                 Parent = TabContainer;
+                AutomaticCanvasSize = Enum.AutomaticSize.Y;
                 ScrollBarThickness = 1.5;
             }
         else
