@@ -3091,6 +3091,7 @@ function Library:CreateWindow(...)
             Position = UDim2.new(0, 0, 0, 0);
             Size = UDim2.new(1, 0, 1, -1);
             Text = Name;
+            TextXAlignment = Enum.TextXAlignment.Center;
             ZIndex = 1;
             Parent = TabButton;
         });
