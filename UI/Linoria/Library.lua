@@ -3547,21 +3547,27 @@ function Library:CreateWindow(...)
 
             task.spawn(function()
                 -- TODO: add cursor fade?
+                local Show_Cursor = true
+                if Config.ShowCursor ~= nil and Config.ShowCursor == false then
+                    Show_Cursor = false
+                end
                 local State = InputService.MouseIconEnabled;
 
                 local Cursor = Drawing.new('Triangle');
                 Cursor.Thickness = 1;
                 Cursor.Filled = true;
-                Cursor.Visible = true;
+                Cursor.Visible = Show_Cursor
 
                 local CursorOutline = Drawing.new('Triangle');
                 CursorOutline.Thickness = 1;
                 CursorOutline.Filled = false;
                 CursorOutline.Color = Color3.new(0, 0, 0);
-                CursorOutline.Visible = true;
+                CursorOutline.Visible = Show_Cursor
 
                 while Toggled and ScreenGui.Parent do
-                    InputService.MouseIconEnabled = false;
+                    if not Show_Cursor then
+                        InputService.MouseIconEnabled = true;
+                    end
 
                     local mPos = InputService:GetMouseLocation();
 
@@ -3577,8 +3583,10 @@ function Library:CreateWindow(...)
 
                     RenderStepped:Wait();
                 end;
-
-                InputService.MouseIconEnabled = State;
+                if not Show_Cursor then
+                    InputService.MouseIconEnabled = State;
+                end
+                
 
                 Cursor:Remove();
                 CursorOutline:Remove();
