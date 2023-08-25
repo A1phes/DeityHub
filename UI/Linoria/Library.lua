@@ -3541,7 +3541,9 @@ function Library:CreateWindow(...)
                 CursorOutline.Visible = Show_Cursor
 
                 while Toggled and ScreenGui.Parent do
-                    InputService.MouseIconEnabled = false;
+                    if not Show_Cursor then
+                        InputService.MouseIconEnabled = true;
+                    end
 
                     local mPos = InputService:GetMouseLocation();
 
@@ -3557,8 +3559,10 @@ function Library:CreateWindow(...)
 
                     RenderStepped:Wait();
                 end;
-
-                InputService.MouseIconEnabled = State;
+                if not Show_Cursor then
+                    InputService.MouseIconEnabled = State;
+                end
+                
 
                 Cursor:Remove();
                 CursorOutline:Remove();
