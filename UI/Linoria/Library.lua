@@ -3136,7 +3136,7 @@ function Library:CreateWindow(...)
         local TabFrame = Library:Create(FrameType, FrameSetting);
 
         local LeftSide = Library:Create('ScrollingFrame', {
-            BackgroundTransparency = 0.5;
+            BackgroundTransparency = 1;
             BorderSizePixel = 0;
             Position = UDim2.new(0, 8 - 1, 0, 8 - 1);
             Size = UDim2.new(0.5, -12 + 2, 0.95, 0); -- Size = UDim2.new(0.5, -12 + 2, 0, 507 + 2);
